@@ -1,61 +1,86 @@
-import Container from './container';
+import Root from './root';
+import Toggle from './toggle';
+import Chat from './chat';
 import Message from './message';
 import Header from './header';
+import TextInput from './textInput';
+import MessageField from './messageField';
 
 class ChatBot {
+  bottom = 20;
   right = 200;
-  width = 300;
-  height = 400;
-  backgroundColor = '#FCF6F5FF';
-  messageColour = '#89ABE3FF';
-  messageColourBot = '#75E6DA';
+  width = 340;
+  height = 600;
+  headerHeight = 60;
+  inputHeight = 60;
+  diameterToggle = 40;
+  baseColor = '#42a5f5';
+  backgroundColor = '#ffffff';
+  bgColorUser = this.baseColor;
+  textColorUser = '#ffffff';
+  bgColorBot = '#f7f7f7';
+  textColorBot = '#6c6c6c';
 
-  containerElement;
   messages = [];
 
   constructor() {
-    this.containerElement = new Container(
-      this.right,
+    this.root = new Root('chat-bot');
+    this.chat = new Chat(
+      this.root.element,
+      this.bottom,
+      this.right + this.diameterToggle * 1.5,
       this.height,
       this.width,
-      this.backgroundColor,
-      'chat-bot'
+      this.backgroundColor
     );
 
-    new Header(this.width, 20, 'blue', this.containerElement.element);
+    this.toggel = new Toggle(
+      this.root.element,
+      this.bottom,
+      this.right,
+      this.diameterToggle,
+      this.baseColor,
+      () => this.chat.toggle()
+    );
 
-    this.messages.push(
-      new Message(
-        this.messageColour,
-        'Hallo',
-        true,
-        this.containerElement.element
-      )
+    new Header(
+      this.chat.element,
+      this.width,
+      this.headerHeight,
+      this.baseColor
     );
-    this.messages.push(
-      new Message(
-        this.messageColourBot,
-        'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.',
-        false,
-        this.containerElement.element
-      )
+
+    this.messageField = new MessageField(
+      this.chat.element,
+      this.height - this.inputHeight - this.headerHeight
     );
-    this.messages.push(
-      new Message(
-        this.messageColour,
-        'Gut das sie hier sind',
-        true,
-        this.containerElement.element
-      )
+
+    new TextInput(
+      this.chat.element,
+      this.width,
+      this.inputHeight,
+      'Send a message',
+      (message) => this.onUserMessage(message)
     );
+  }
+
+  addMessage(text, isUser) {
+    const bgColor = isUser ? this.bgColorUser : this.bgColorBot;
+    const textColor = isUser ? this.textColorUser : this.textColorBot;
     this.messages.push(
-      new Message(
-        this.messageColourBot,
-        'Hallo',
-        false,
-        this.containerElement.element
-      )
+      new Message(this.messageField.element, text, isUser, bgColor, textColor)
     );
+  }
+
+  onUserMessage(message) {
+    this.addMessage(message, true);
+    this.messageField.scrollDown();
+    this.onBotMessage('Cool');
+  }
+
+  onBotMessage(message) {
+    this.addMessage(message, false);
+    this.messageField.scrollDown();
   }
 }
 

@@ -6,22 +6,27 @@ class Message {
 
   text = '';
 
-  constructor(backgroundColor, text, left, parent) {
+  constructor(parent, text, right, backgroundColor, textColor) {
     this.rowStyle = {
       margin: numberToPixel(5),
-      bottom: '0',
+      marginBottom: numberToPixel(20),
       overflow: 'hidden',
     };
 
     this.textStyle = {
       backgroundColor: backgroundColor,
       borderRadius: numberToPixel(5),
-      paddingLeft: '5px',
-      paddingRight: '5px',
+      color: textColor,
+      padding: numberToPixel(10),
       display: 'inline-block',
+      fontFamily: 'Arial, Helvetica, sans-serif',
+      fontSize: numberToPixel(12),
+      lineHeight: numberToPixel(20),
+      fontWeight: '500',
+      fontSmoothing: 'antialiased',
     };
 
-    if (!left) {
+    if (right) {
       this.textStyle.float = 'right';
       this.textStyle.marginLeft = '20px';
     } else {

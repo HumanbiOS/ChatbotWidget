@@ -1,14 +1,17 @@
 import { numberToPixel, aplyStylesToElement } from './helper';
 
 class Header {
-  constructor(width, height, backgroundColor, parent) {
+  constructor(parent, width, height, backgroundColor) {
     this.width = width;
     this.height = height;
     this.backgroundColor = backgroundColor;
+    this.bottomMargin = 5;
     this.style = {
       width: numberToPixel(width),
-      height: numberToPixel(height),
+      height: numberToPixel(height - this.bottomMargin),
       backgroundColor: backgroundColor,
+      borderRadius: '15px 15px 0 0',
+      marginBottom: numberToPixel(this.bottomMargin),
     };
     this.create(parent);
   }
