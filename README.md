@@ -22,3 +22,4 @@ npm run build
 - Move css for scrollbar to js or keep in css file?
 - Decide on handlin for customer css?
 - Create folder structure
+- Add Fullscreen on mobile feature
