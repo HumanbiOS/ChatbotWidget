@@ -20,6 +20,7 @@
   "license": "ISC",
   "dependencies": {
     "@babel/polyfill": "^7.10.4",
+    "http-server": "^0.12.3",
     "webpack-merge": "^5.0.9"
   }
 }

@@ -1,25 +1,21 @@
+import Component from './component';
 import { numberToPixel, aplyStylesToElement } from './helper';
 
-class Header {
-  constructor(parent, width, height, backgroundColor) {
-    this.width = width;
-    this.height = height;
-    this.backgroundColor = backgroundColor;
-    this.bottomMargin = 5;
+class Header extends Component {
+  constructor(parent, width, height, bottomMargin, backgroundColor) {
+    super(parent);
     this.style = {
       width: numberToPixel(width),
-      height: numberToPixel(height - this.bottomMargin),
+      height: numberToPixel(height - bottomMargin),
       backgroundColor: backgroundColor,
       borderRadius: '15px 15px 0 0',
-      marginBottom: numberToPixel(this.bottomMargin),
+      marginBottom: numberToPixel(bottomMargin),
     };
-    this.create(parent);
+    super.render();
   }
 
-  create(parent) {
+  create() {
     this.element = document.createElement('div');
-    aplyStylesToElement(this.style, this.element);
-    parent.appendChild(this.element);
   }
 }
 

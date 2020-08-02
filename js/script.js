@@ -1,32 +1,42 @@
 import Root from './root';
 import Toggle from './toggle';
 import Chat from './chat';
-import Message from './message';
+import Message from './messages/message';
 import Header from './header';
 import TextInput from './textInput';
 import MessageField from './messageField';
+import MessageWithButtons from './messages/messageWithButtons';
+import { setupWebsocket, sendMessage } from './client';
+
+const chatbotStyle = {
+  bottom: 20,
+  right: 200,
+  width: 340,
+  height: 600,
+  headerHeight: 60,
+  inputHeight: 60,
+  diameterToggle: 40,
+  baseColor: '#42a5f5',
+  backgroundColor: '#ffffff',
+  get bgColorUser() {
+    return this.baseColor;
+  },
+  textColorUser: '#ffffff',
+  bgColorBot: '#f7f7f7',
+  textColorBot: '#6c6c6c',
+};
 
 class ChatBot {
-  bottom = 20;
-  right = 200;
-  width = 340;
-  height = 600;
-  headerHeight = 60;
-  inputHeight = 60;
-  diameterToggle = 40;
-  baseColor = '#42a5f5';
-  backgroundColor = '#ffffff';
-  bgColorUser = this.baseColor;
-  textColorUser = '#ffffff';
-  bgColorBot = '#f7f7f7';
-  textColorBot = '#6c6c6c';
-
   messages = [];
 
   constructor() {
-    this.root = new Root('chat-bot');
+    //TODO
+    for (const [key, value] of Object.entries(chatbotStyle)) {
+      this[key] = value;
+    }
+    this.element = new Root('chat-bot').element;
     this.chat = new Chat(
-      this.root.element,
+      this.element,
       this.bottom,
       this.right + this.diameterToggle * 1.5,
       this.height,
@@ -35,7 +45,7 @@ class ChatBot {
     );
 
     this.toggel = new Toggle(
-      this.root.element,
+      this.element,
       this.bottom,
       this.right,
       this.diameterToggle,
@@ -47,6 +57,7 @@ class ChatBot {
       this.chat.element,
       this.width,
       this.headerHeight,
+      5,
       this.baseColor
     );
 
@@ -62,6 +73,8 @@ class ChatBot {
       'Send a message',
       (message) => this.onUserMessage(message)
     );
+
+    setupWebsocket((message) => this.onBotMessage(message));
   }
 
   addMessage(text, isUser) {
@@ -72,16 +85,38 @@ class ChatBot {
     );
   }
 
+  addMessageWithButtons(text, isUser, buttonTexts) {
+    const bgColor = isUser ? this.bgColorUser : this.bgColorBot;
+    const textColor = isUser ? this.textColorUser : this.textColorBot;
+    this.messages.push(
+      new MessageWithButtons(
+        this.messageField.element,
+        text,
+        isUser,
+        bgColor,
+        textColor,
+        buttonTexts
+      )
+    );
+  }
+
   onUserMessage(message) {
     this.addMessage(message, true);
     this.messageField.scrollDown();
-    this.onBotMessage('Cool');
+    sendMessage(message);
   }
 
-  onBotMessage(message) {
-    this.addMessage(message, false);
+  onBotMessage(data) {
+    console.log('Message data:', data);
+    if (data.buttons.length) {
+      this.addMessageWithButtons(data.message.text, false, data.buttons);
+    } else {
+      this.addMessage(data.message.text, false);
+    }
     this.messageField.scrollDown();
   }
+
+  addButton(text) {}
 }
 
 function init() {
