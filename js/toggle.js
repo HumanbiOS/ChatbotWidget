@@ -1,4 +1,4 @@
-import { numberToPixel, aplyStylesToElement } from './helper';
+import { numberToPixel, aplyStylesToElement } from './services/helper';
 class Toggle {
   constructor(
     parent,

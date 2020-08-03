@@ -1,11 +1,10 @@
 import Component from './component';
-import { numberToPixel, aplyStylesToElement } from './helper';
+import { numberToPixel, aplyStylesToElement } from './services/helper';
 
 class Header extends Component {
-  constructor(parent, width, height, bottomMargin, backgroundColor) {
+  constructor(parent, height, bottomMargin, backgroundColor) {
     super(parent);
     this.style = {
-      width: numberToPixel(width),
       height: numberToPixel(height - bottomMargin),
       backgroundColor: backgroundColor,
       borderRadius: '15px 15px 0 0',

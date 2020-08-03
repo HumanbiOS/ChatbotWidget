@@ -1,4 +1,4 @@
-import { aplyStylesToElement, numberToPixel } from './helper';
+import { aplyStylesToElement, numberToPixel } from './services/helper';
 
 class TextInput {
   constructor(parent, width, height, placeholder, messageCallback) {

@@ -1,4 +1,8 @@
-import { aplyStylesToElement, numberToPixel, applyToolbar } from './helper';
+import {
+  aplyStylesToElement,
+  numberToPixel,
+  applyToolbar,
+} from './services/helper';
 
 class MessageField {
   constructor(parent, height) {

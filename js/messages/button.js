@@ -1,26 +1,26 @@
-import { numberToPixel, aplyStylesToElement } from '../services/helper';
+import { numberToPixel } from '../services/helper';
 import Component from '../component';
 
-class Text extends Component {
-  rowStyle;
-  textStyle;
-
-  text = '';
-
-  constructor(parent, text, right, backgroundColor, textColor) {
+class Button extends Component {
+  constructor(parent, text, right, backgroundColor, textColor, callback) {
     super(parent);
+
+    this.callback = callback;
 
     this.style = {
       backgroundColor: backgroundColor,
       borderRadius: numberToPixel(5),
       color: textColor,
-      padding: numberToPixel(10),
       display: 'inline-block',
+      padding: numberToPixel(5),
       fontFamily: 'Arial, Helvetica, sans-serif',
       fontSize: numberToPixel(12),
       lineHeight: numberToPixel(20),
-      fontWeight: '500',
+      fontWeight: 'bold',
       fontSmoothing: 'antialiased',
+      outline: 'none',
+      border: 'none',
+      marginTop: numberToPixel(12),
     };
 
     if (right) {
@@ -36,9 +36,11 @@ class Text extends Component {
   }
 
   create() {
-    this.element = document.createElement('div');
+    this.element = document.createElement('button');
+    this.element.setAttribute('type', 'button');
     this.element.textContent = this.text;
+    this.element.onclick = () => this.callback(this.text);
   }
 }
 
-export default Text;
+export default Button;

@@ -1,11 +1,21 @@
-import { numberToPixel } from '../helper';
+import { numberToPixel } from '../services/helper';
 import Component from '../component';
 import Text from './text';
+import ButtonContainer from './buttonContainer';
 
 //TODO Extends
 class MassageWithButtons extends Component {
-  constructor(parent, text, right, backgroundColor, textColor, buttonTexts) {
+  constructor(
+    parent,
+    text,
+    right,
+    backgroundColor,
+    textColor,
+    buttonTexts,
+    callback
+  ) {
     super(parent);
+    this.callback = callback;
     this.right = right;
     this.text = text;
     this.backgroundColor = backgroundColor;
@@ -21,7 +31,7 @@ class MassageWithButtons extends Component {
   }
 
   addChildren() {
-    const textChildren = [
+    const children = [
       new Text(
         this.element,
         this.text,
@@ -29,19 +39,16 @@ class MassageWithButtons extends Component {
         this.backgroundColor,
         this.textColor
       ),
+      new ButtonContainer(
+        this.element,
+        this.right,
+        this.backgroundColor,
+        this.textColor,
+        this.buttonTexts,
+        (text) => this.callback(text)
+      ),
     ];
-    this.buttonTexts.forEach((message) => {
-      textChildren.push(
-        new Text(
-          this.element,
-          message.text,
-          this.right,
-          this.backgroundColor,
-          this.textColor
-        )
-      );
-    });
-    return textChildren;
+    return children;
   }
 
   create() {

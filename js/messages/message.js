@@ -1,4 +1,4 @@
-import { numberToPixel } from '../helper';
+import { numberToPixel } from '../services/helper';
 import Component from '../component';
 import Text from './text';
 

@@ -6,11 +6,12 @@ import Header from './header';
 import TextInput from './textInput';
 import MessageField from './messageField';
 import MessageWithButtons from './messages/messageWithButtons';
-import { setupWebsocket, sendMessage } from './client';
+import { setupWebsocket, sendMessage } from './services/client';
+import { addStylesheet } from './services/helper';
 
 const chatbotStyle = {
   bottom: 20,
-  right: 200,
+  right: 20,
   width: 340,
   height: 600,
   headerHeight: 60,
@@ -53,13 +54,7 @@ class ChatBot {
       () => this.chat.toggle()
     );
 
-    new Header(
-      this.chat.element,
-      this.width,
-      this.headerHeight,
-      5,
-      this.baseColor
-    );
+    new Header(this.chat.element, this.headerHeight, 5, this.baseColor);
 
     this.messageField = new MessageField(
       this.chat.element,
@@ -95,7 +90,8 @@ class ChatBot {
         isUser,
         bgColor,
         textColor,
-        buttonTexts
+        buttonTexts,
+        (text) => this.onUserMessage(text)
       )
     );
   }
@@ -120,6 +116,8 @@ class ChatBot {
 }
 
 function init() {
-  const chatBot = new ChatBot();
+  new ChatBot();
+  addStylesheet('css/styles.css');
 }
+
 window.addEventListener('load', init());

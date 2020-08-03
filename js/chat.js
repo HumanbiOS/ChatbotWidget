@@ -1,4 +1,4 @@
-import { numberToPixel, aplyStylesToElement } from './helper';
+import { numberToPixel, aplyStylesToElement } from './services/helper';
 
 class Chat {
   constructor(parent, bottom, right, height, width, backgroundColor) {
@@ -14,6 +14,18 @@ class Chat {
       display: 'none',
       boxShadow: '0 0 4px rgba(0, 0, 0, .14), 0 4px 8px rgba(0, 0, 0, .28)',
       borderRadius: numberToPixel(15),
+      mediaQuery: {
+        query: '(max-width: 700px)',
+        style: {
+          get width() {
+            const vW = Math.max(
+              document.documentElement.clientWidth || 0,
+              window.innerWidth || 0
+            );
+            return numberToPixel(vW - right);
+          },
+        },
+      },
     };
 
     this.create(parent);
