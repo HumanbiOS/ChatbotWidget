@@ -1,27 +1,20 @@
 import { numberToPixel, aplyStylesToElement } from './services/helper';
 class Toggle {
-  constructor(
-    parent,
-    bottom,
-    right,
-    diameter,
-    backgroundColor,
-    toggleCallback
-  ) {
+  constructor(parent, props) {
     this.active = false;
 
     this.style = {
       position: 'fixed',
-      bottom: numberToPixel(bottom),
-      right: numberToPixel(right),
-      width: numberToPixel(diameter),
-      height: numberToPixel(diameter),
-      borderRadius: numberToPixel(diameter / 2),
-      backgroundColor: backgroundColor,
+      bottom: numberToPixel(props.bottom),
+      right: numberToPixel(props.right),
+      width: numberToPixel(props.diameter),
+      height: numberToPixel(props.diameter),
+      borderRadius: numberToPixel(props.diameter / 2),
+      backgroundColor: props.color,
       boxShadow: '0 0 4px rgba(0, 0, 0, .14), 0 4px 8px rgba(0, 0, 0, .28)',
     };
 
-    this.create(parent, toggleCallback);
+    this.create(parent, props.callback);
   }
 
   create(parent, toggleCallback) {

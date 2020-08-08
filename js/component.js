@@ -1,8 +1,9 @@
+import { aplyStylesToElement } from './services/helper';
 class Component {
   parent;
   element;
   children = [];
-  style;
+  style = {};
 
   constructor(parent) {
     this.parent = parent;
@@ -12,7 +13,7 @@ class Component {
     this.create();
     this.applyStyle();
     this.append();
-    this.children = this.addChildren();
+    this.addChildren();
   }
 
   create() {
@@ -33,14 +34,10 @@ class Component {
   }
 
   //TODO move this
-  addChildren(children) {
-    return [];
-  }
+  addChildren() {}
 
   applyStyle() {
-    for (const [key, value] of Object.entries(this.style)) {
-      this.element.style[key] = value;
-    }
+    aplyStylesToElement(this.style, this.element);
   }
 }
 

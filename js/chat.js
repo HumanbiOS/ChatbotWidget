@@ -1,40 +1,67 @@
+import Component from './component';
+import Header from './header';
+import MessageField from './messageField';
+import TextInput from './textInput/textInput';
 import { numberToPixel, aplyStylesToElement } from './services/helper';
 
-class Chat {
-  constructor(parent, bottom, right, height, width, backgroundColor) {
+class Chat extends Component {
+  constructor(parent, props) {
+    super(parent);
+    this.props = props;
     this.active = false;
+    this.inputHeight = 60;
+    this.headerHeight = 60;
 
     this.style = {
       position: 'fixed',
-      bottom: numberToPixel(bottom),
-      right: numberToPixel(right),
-      height: numberToPixel(height),
-      width: numberToPixel(width),
-      backgroundColor: backgroundColor,
+      bottom: numberToPixel(props.bottom),
+      right: numberToPixel(props.right),
+      height: numberToPixel(props.height),
+      width: numberToPixel(props.width),
+      backgroundColor: props.backgroundColor,
       display: 'none',
       boxShadow: '0 0 4px rgba(0, 0, 0, .14), 0 4px 8px rgba(0, 0, 0, .28)',
       borderRadius: numberToPixel(15),
       mediaQuery: {
         query: '(max-width: 700px)',
         style: {
-          get width() {
-            const vW = Math.max(
-              document.documentElement.clientWidth || 0,
-              window.innerWidth || 0
-            );
-            return numberToPixel(vW - right);
-          },
+          position: 'relative',
+          bottom: 0,
+          right: 0,
+          height: '100%',
+          width: '100%',
         },
       },
     };
 
-    this.create(parent);
+    super.render();
   }
 
-  create(parent) {
+  addChildren() {
+    const header = new Header(this.element, {
+      height: this.headerHeight - 5,
+      bottomMargin: 5,
+      backgroundColor: this.props.baseColor,
+    });
+    const messageField = new MessageField(
+      this.element,
+      this.props.height - this.inputHeight - this.headerHeight
+    );
+    this.children = [
+      header,
+      messageField,
+      new TextInput(
+        this.element,
+        this.width,
+        this.inputHeight,
+        'Send a message',
+        (message) => messageField.onUserMessage(message)
+      ),
+    ];
+  }
+
+  create() {
     this.element = document.createElement('div');
-    aplyStylesToElement(this.style, this.element);
-    parent.appendChild(this.element);
   }
 
   toggle() {

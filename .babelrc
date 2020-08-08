@@ -4,7 +4,6 @@
       "@babel/preset-env",
       {
         "debug": true,
-        "useBuiltIns": "usage",
         "targets": "> 0.25%, not dead"
       }
     ]

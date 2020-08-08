@@ -14,6 +14,9 @@ export function aplyStylesToElement(style, domElement) {
           aplyStylesToElement(intersect(style, value.style), domElement);
         }
       });
+      if (mediaQuery.matches) {
+        aplyStylesToElement(value.style, domElement);
+      }
     }
     domElement.style[key] = value;
   }

@@ -3,12 +3,18 @@ import Component from '../component';
 import Text from './text';
 
 class Message extends Component {
-  constructor(parent, text, right, backgroundColor, textColor) {
+  constructor(parent, text, isUser) {
     super(parent);
-    this.right = right;
+    this.isUser = isUser;
     this.text = text;
-    this.backgroundColor = backgroundColor;
-    this.textColor = textColor;
+    if (this.isUser) {
+      this.backgroundColor = '#42a5f5';
+      this.textColor = '#ffffff';
+    } else {
+      this.backgroundColor = '#f7f7f7';
+      this.textColor = '#6c6c6c';
+    }
+
     this.style = {
       margin: numberToPixel(5),
       marginBottom: numberToPixel(20),
@@ -19,16 +25,15 @@ class Message extends Component {
   }
 
   addChildren() {
-    const textChildren = [
+    this.children.push(
       new Text(
         this.element,
         this.text,
         this.right,
         this.backgroundColor,
         this.textColor
-      ),
-    ];
-    return textChildren;
+      )
+    );
   }
 
   create() {

@@ -40,7 +40,7 @@ class ButtonContainer extends Component {
         )
       );
     });
-    return buttons;
+    this.children = buttons;
   }
 
   create() {
