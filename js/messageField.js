@@ -5,10 +5,14 @@ import { numberToPixel } from './services/helper';
 import { setupWebsocket, sendMessage } from './services/client';
 
 class MessageField extends Component {
-  constructor(parent, height) {
+  constructor(parent, top, bottom) {
     super(parent);
     this.style = {
-      height: numberToPixel(height),
+      position: 'absolute',
+      bottom: numberToPixel(bottom),
+      left: '0',
+      right: '0',
+      top: numberToPixel(top),
       overflowY: 'auto',
     };
 

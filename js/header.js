@@ -3,7 +3,6 @@ import { numberToPixel, aplyStylesToElement } from './services/helper';
 
 class Header extends Component {
   constructor(parent, props) {
-    console.log(props);
     super(parent);
     this.style = {
       height: numberToPixel(props.height - props.bottomMargin),

@@ -45,7 +45,8 @@ class Chat extends Component {
     });
     const messageField = new MessageField(
       this.element,
-      this.props.height - this.inputHeight - this.headerHeight
+      this.headerHeight,
+      this.inputHeight
     );
     this.children = [
       header,
