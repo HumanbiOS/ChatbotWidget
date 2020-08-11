@@ -15,6 +15,7 @@ class TextInput extends Component {
       bottom: 0,
       position: 'absolute',
       width: '100%',
+      display: 'table',
     };
 
     this.render();

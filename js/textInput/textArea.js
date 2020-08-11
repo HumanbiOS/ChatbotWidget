@@ -9,24 +9,19 @@ class TextArea extends Component {
     this.onkeypress = onkeypress;
     const padding = height / 4;
     this.divStyle = {
-      float: 'left',
-      //TODO
-      width: numberToPixel(200),
-      overflow: 'hidden',
+      width: 'auto',
+      display: 'table-cell',
     };
     this.style = {
       height: numberToPixel(height - padding * 2),
       width: '100%',
       resize: 'none',
-      fontSize: '13px',
-      fontWeight: '400',
       padding: numberToPixel(padding),
       border: 'none',
       outline: 'none',
       borderBottomLeftRadius: numberToPixel(15),
-      verticalAlign: 'middle',
       fontFamily: 'Arial, Helvetica, sans-serif',
-      fontSize: numberToPixel(12),
+      fontSize: numberToPixel(16),
       lineHeight: numberToPixel(20),
       fontWeight: '500',
       fontSmoothing: 'antialiased',

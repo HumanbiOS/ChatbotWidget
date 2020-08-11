@@ -8,11 +8,12 @@ class TextButton extends Component {
     const padding = height / 4;
 
     this.style = {
+      display: 'table-cell',
       height: numberToPixel(height / 2),
       width: numberToPixel(height / 2),
       margin: numberToPixel(padding),
       cursor: 'pointer',
-      color: 'gray',
+      backgroundColor: '#efefef',
       borderRadius: numberToPixel(height),
       float: 'right',
       border: 'none',
@@ -23,7 +24,7 @@ class TextButton extends Component {
   }
 
   create() {
-    this.element = document.createElement('button');
+    this.element = document.createElement('div');
     this.element.onmouseup = () => this.onMouseUp();
   }
 }
