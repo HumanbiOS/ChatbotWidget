@@ -1,6 +1,7 @@
 import Component from './component';
 import Chat from './chat';
 import Toggle from './toggle';
+import { numberToPixel } from './services/helper';
 
 class Container extends Component {
   constructor(parent, props) {
@@ -11,7 +12,10 @@ class Container extends Component {
       right: 0,
       bottom: 0,
       mediaQuery: {
-        query: '(max-width: 700px)',
+        query:
+          '(max-width: 700px), (max-height: ' +
+          numberToPixel(this.props.height + this.props.bottom) +
+          ')',
         style: {
           left: 0,
           top: 0,

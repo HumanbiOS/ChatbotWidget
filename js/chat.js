@@ -12,6 +12,13 @@ class Chat extends Component {
     this.inputHeight = 60;
     this.headerHeight = 60;
 
+    console.log(
+      'test',
+      '(max-width: 700px) and (max-height: ' +
+        numberToPixel(this.props.height) +
+        ')'
+    );
+
     this.style = {
       position: 'fixed',
       bottom: numberToPixel(props.bottom),
@@ -23,7 +30,10 @@ class Chat extends Component {
       boxShadow: '0 0 4px rgba(0, 0, 0, .14), 0 4px 8px rgba(0, 0, 0, .28)',
       borderRadius: numberToPixel(15),
       mediaQuery: {
-        query: '(max-width: 700px)',
+        query:
+          '(max-width: 700px), (max-height: ' +
+          numberToPixel(this.props.height + this.props.bottom) +
+          ')',
         style: {
           position: 'relative',
           bottom: 0,

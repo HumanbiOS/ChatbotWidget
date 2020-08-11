@@ -10,11 +10,13 @@
     "@babel/register": "^7.10.5",
     "babel-loader": "^8.1.0",
     "webpack": "^4.44.1",
-    "webpack-cli": "^3.3.12"
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0"
   },
   "scripts": {
     "develop": "webpack --config webpack.dev.js",
-    "build": "webpack --config webpack.prod.js"
+    "build": "webpack --config webpack.prod.js",
+    "start": "webpack-dev-server --open --config webpack.dev.js"
   },
   "author": "Kilian Käslin",
   "license": "ISC",

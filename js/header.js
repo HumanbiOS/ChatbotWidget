@@ -1,5 +1,5 @@
 import Component from './component';
-import { numberToPixel, aplyStylesToElement } from './services/helper';
+import { numberToPixel } from './services/helper';
 
 class Header extends Component {
   constructor(parent, props) {
@@ -15,7 +15,7 @@ class Header extends Component {
 
   create() {
     this.element = document.createElement('div');
-    this.element.className = 'header';
+    this.element.className = 'header2';
   }
 }
 
