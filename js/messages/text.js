@@ -21,6 +21,7 @@ class Text extends Component {
       lineHeight: numberToPixel(20),
       fontWeight: '500',
       fontSmoothing: 'antialiased',
+      wordBreak: 'break-all',
     };
 
     if (right) {
