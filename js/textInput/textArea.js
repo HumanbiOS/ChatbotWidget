@@ -25,7 +25,7 @@ class TextArea extends Component {
       lineHeight: numberToPixel(20),
       fontWeight: '500',
       fontSmoothing: 'antialiased',
-      overflow: 'hidden',
+      overflowY: 'auto',
     };
 
     this.render();
