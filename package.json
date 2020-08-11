@@ -8,21 +8,19 @@
     "@babel/plugin-syntax-class-properties": "^7.10.4",
     "@babel/preset-env": "^7.10.4",
     "@babel/register": "^7.10.5",
+    "@babel/polyfill": "^7.10.4",
     "babel-loader": "^8.1.0",
+    "html-webpack-plugin": "^4.3.0",
     "webpack": "^4.44.1",
     "webpack-cli": "^3.3.12",
-    "webpack-dev-server": "^3.11.0"
+    "webpack-dev-server": "^3.11.0",
+    "webpack-merge": "^5.0.9"
   },
   "scripts": {
-    "develop": "webpack --config webpack.dev.js",
     "build": "webpack --config webpack.prod.js",
-    "start": "webpack-dev-server --open --config webpack.dev.js"
+    "develop": "webpack-dev-server --open --config webpack.dev.js"
   },
   "author": "Kilian Käslin",
   "license": "ISC",
-  "dependencies": {
-    "@babel/polyfill": "^7.10.4",
-    "http-server": "^0.12.3",
-    "webpack-merge": "^5.0.9"
-  }
+  "dependencies": {}
 }
