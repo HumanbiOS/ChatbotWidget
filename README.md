@@ -18,8 +18,6 @@ npm run build
 
 # TODO
 
-- Add websockets for communication with bot server
-- Move css for scrollbar to js or keep in css file?
-- Decide on handlin for customer css?
+- Decide on handling for customer css?
 - Create folder structure
-- Add Fullscreen on mobile feature
+- Rethink js -> html pipline. (html -> js -> html ?)
