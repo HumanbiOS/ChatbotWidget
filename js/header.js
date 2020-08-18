@@ -15,7 +15,7 @@ class Header extends Component {
 
   create() {
     this.element = document.createElement('div');
-    this.element.className = 'header2';
+    this.element.className = 'header';
   }
 }
 

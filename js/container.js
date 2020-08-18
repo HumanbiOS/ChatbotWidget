@@ -11,12 +11,19 @@ class Container extends Component {
       position: 'fixed',
       right: 0,
       bottom: 0,
+      width: 0,
+      minWidth: 0,
+      minHeight: 0,
+      height: 0,
+      padding: 0,
       mediaQuery: {
         query:
           '(max-width: 700px), (max-height: ' +
           numberToPixel(this.props.height + this.props.bottom) +
           ')',
         style: {
+          minWidth: '360px',
+          minHeight: '300px',
           left: 0,
           top: 0,
           position: 'fixed',
