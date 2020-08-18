@@ -11,7 +11,6 @@ module.exports = merge(common, {
   devServer: {
     contentBase: path.resolve(__dirname, '.'),
     compress: true,
-    hot: true,
     port: 9000,
   },
   plugins: [

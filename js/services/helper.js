@@ -40,5 +40,5 @@ export function addStylesheet(fileName) {
   link.rel = 'stylesheet';
   link.href = fileName;
 
-  head.appendChild(link);
+  head.prepend(link);
 }

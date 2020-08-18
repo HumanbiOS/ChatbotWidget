@@ -1,7 +1,4 @@
 import Root from './root';
-import Message from './messages/message';
-import MessageWithButtons from './messages/messageWithButtons';
-
 import { addStylesheet } from './services/helper';
 import Container from './container';
 
