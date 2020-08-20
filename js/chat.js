@@ -12,13 +12,6 @@ class Chat extends Component {
     this.inputHeight = 60;
     this.headerHeight = 60;
 
-    console.log(
-      'test',
-      '(max-width: 700px) and (max-height: ' +
-        numberToPixel(this.props.height) +
-        ')'
-    );
-
     this.style = {
       position: 'fixed',
       bottom: numberToPixel(props.bottom),

@@ -1,28 +1,40 @@
+import { getCookie } from './helper';
+
 let session;
 let socket;
 
-function getSessionAndCockies() {
-  fetch('https://test.kittyandrew.dev/api/get_session', {
+async function getSessionAndCockies() {
+  console.log('Checking for humanbios-session cookie...');
+  const cookieSession = getCookie('humanbios-session');
+  if (cookieSession) {
+    session = cookieSession;
+    console.log('Found humanbios-session cookie:', session);
+    return;
+  }
+
+  console.log('Requesting Session...');
+  const response = await fetch('https://test.kittyandrew.dev/api/get_session', {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json; charset=UTF-8',
     },
-  })
-    .then((response) => response.json())
-    .then((json) => {
-      session = json.session;
-      console.log(session);
-    });
+  });
+  const json = await response.json();
+  session = json.session;
+  document.cookie = `humanbios-session=${session}`;
+  console.log('Received Session from Server:', session);
 }
 
-export function setupWebsocket(callbackOnMessage) {
-  getSessionAndCockies();
+export async function setupWebsocket(callbackOnMessage) {
+  await getSessionAndCockies();
 
   const websockedUrl = 'wss://test.kittyandrew.dev/api/messages';
   socket = new WebSocket(websockedUrl);
+
   // Connection opened callback
   socket.addEventListener('open', function (event) {
-    console.log(event, session);
+    console.log('Received open event:', event);
+    console.log('Sending start event with session:', session);
     socket.send(JSON.stringify({ event: 'start', session: session }));
   });
 
