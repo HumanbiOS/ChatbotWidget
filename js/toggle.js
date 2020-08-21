@@ -1,27 +1,18 @@
-import { numberToPixel, aplyStylesToElement } from './services/helper';
-class Toggle {
+import Component from './component';
+import { numberToPixel } from './services/helper';
+class Toggle extends Component {
   constructor(parent, props) {
+    super(parent);
     this.active = false;
+    this.callback = props.callback;
 
-    this.style = {
-      position: 'fixed',
-      bottom: numberToPixel(props.bottom),
-      right: numberToPixel(props.right),
-      width: numberToPixel(props.diameter),
-      height: numberToPixel(props.diameter),
-      borderRadius: numberToPixel(props.diameter / 2),
-      backgroundColor: props.color,
-      boxShadow: '0 0 4px rgba(0, 0, 0, .14), 0 4px 8px rgba(0, 0, 0, .28)',
-    };
-
-    this.create(parent, props.callback);
+    this.render();
   }
 
-  create(parent, toggleCallback) {
+  create() {
     this.element = document.createElement('div');
-    aplyStylesToElement(this.style, this.element);
-    this.element.onclick = toggleCallback;
-    parent.appendChild(this.element);
+    this.element.className = 'chat-bot-toggle';
+    this.element.onclick = () => this.callback();
   }
 }
 

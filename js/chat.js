@@ -2,7 +2,6 @@ import Component from './component';
 import Header from './header';
 import MessageField from './messageField';
 import TextInput from './textInput/textInput';
-import { numberToPixel, aplyStylesToElement } from './services/helper';
 
 class Chat extends Component {
   constructor(parent, props) {
@@ -12,31 +11,6 @@ class Chat extends Component {
     this.inputHeight = 60;
     this.headerHeight = 60;
     this.messageField;
-
-    this.style = {
-      position: 'fixed',
-      bottom: numberToPixel(props.bottom),
-      right: numberToPixel(props.right),
-      height: numberToPixel(props.height),
-      width: numberToPixel(props.width),
-      backgroundColor: props.backgroundColor,
-      display: 'none',
-      boxShadow: '0 0 4px rgba(0, 0, 0, .14), 0 4px 8px rgba(0, 0, 0, .28)',
-      borderRadius: numberToPixel(15),
-      mediaQuery: {
-        query:
-          '(max-width: 700px), (max-height: ' +
-          numberToPixel(this.props.height + this.props.bottom) +
-          ')',
-        style: {
-          position: 'relative',
-          bottom: 0,
-          right: 0,
-          height: '100%',
-          width: '100%',
-        },
-      },
-    };
 
     super.render();
   }
@@ -67,6 +41,7 @@ class Chat extends Component {
 
   create() {
     this.element = document.createElement('div');
+    this.element.className = 'chat-bot-chat';
   }
 
   toggle() {

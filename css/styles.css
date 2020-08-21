@@ -1,3 +1,61 @@
+.chat-bot-container {
+  position: fixed;
+  box-sizing: border-box;
+}
+
+.chat-bot-header {
+  height: 50px;
+  background-color: rgb(66, 165, 245);
+  border-radius: 15px 15px 0px 0px;
+  margin-bottom: 5px;
+}
+
+.chat-bot-chat {
+  position: fixed;
+  bottom: 20px;
+  right: 80px;
+  height: 600px;
+  width: 340px;
+  background-color: rgb(255, 255, 255);
+  display: block;
+  box-shadow: rgba(0, 0, 0, 0.14) 0px 0px 4px, rgba(0, 0, 0, 0.28) 0px 4px 8px;
+  border-radius: 15px;
+}
+
+@media (max-width: 700px), (max-height: 620px) {
+  .chat-bot-container {
+    position: fixed;
+    right: 0px;
+    bottom: 0px;
+    width: 100%;
+    min-width: 360px;
+    min-height: 300px;
+    height: 100%;
+    padding: 20px 20px 80px;
+    left: 0px;
+    top: 0px;
+    box-sizing: border-box;
+  }
+  .chat-bot-chat {
+    position: relative;
+    bottom: 0px;
+    right: 0px;
+    height: 100%;
+    width: 100%;
+  }
+}
+
+.chat-bot-toggle {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+  background-color: rgb(66, 165, 245);
+  box-shadow: rgba(0, 0, 0, 0.14) 0px 0px 4px, rgba(0, 0, 0, 0.28) 0px 4px 8px;
+}
+
 .chat-bot-scrollbar::-webkit-scrollbar {
   width: 6px;
 }
