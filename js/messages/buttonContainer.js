@@ -21,6 +21,8 @@ class ButtonContainer extends Component {
     this.style = {
       display: 'flex',
       justifyContent: 'space-between',
+      flexFlow: 'row wrap',
+      width: '100%',
     };
 
     this.render();

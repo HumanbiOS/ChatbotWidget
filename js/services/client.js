@@ -13,12 +13,15 @@ async function getSessionAndCockies() {
   }
 
   console.log('Requesting Session...');
-  const response = await fetch('https://test.kittyandrew.dev/api/get_session', {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json; charset=UTF-8',
-    },
-  });
+  const response = await fetch(
+    'https://websocket.kittyandrew.dev/api/get_session',
+    {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+    }
+  );
   const json = await response.json();
   session = json.session;
   document.cookie = `humanbios-session=${session}`;
@@ -28,7 +31,7 @@ async function getSessionAndCockies() {
 export async function setupWebsocket(callbackOnMessage) {
   await getSessionAndCockies();
 
-  const websockedUrl = 'wss://test.kittyandrew.dev/api/messages';
+  const websockedUrl = 'wss://websocket.kittyandrew.dev/api/messages';
   socket = new WebSocket(websockedUrl);
 
   // Connection opened callback

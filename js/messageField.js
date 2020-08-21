@@ -17,7 +17,7 @@ class MessageField extends Component {
     };
 
     super.render();
-    setupWebsocket((message) => this.onBotMessage(message));
+    setupWebsocket((data) => this.onServerMessage(data));
   }
 
   create() {
@@ -38,15 +38,25 @@ class MessageField extends Component {
     );
   }
 
-  onUserMessage(message) {
+  onServerMessage(data) {
+    if (data.user.first_name == 'HumanBios') {
+      this.onBotMessage(data);
+    } else {
+      this.onUserMessage(data.message.text, false);
+    }
+  }
+
+  onUserMessage(message, send = true) {
     this.addMessage(message, true);
     this.scrollDown();
-    sendMessage(message);
+    if (send) {
+      sendMessage(message);
+    }
   }
 
   onBotMessage(data) {
     console.log('Message data:', data);
-    if (data.buttons.length) {
+    if (data.buttons) {
       this.addMessageWithButtons(data.message.text, false, data.buttons);
     } else {
       this.addMessage(data.message.text, false);

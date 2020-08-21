@@ -29,7 +29,7 @@ class Message extends Component {
       new Text(
         this.element,
         this.text,
-        this.right,
+        this.isUser,
         this.backgroundColor,
         this.textColor
       )

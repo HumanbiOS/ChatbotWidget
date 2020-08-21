@@ -11,6 +11,7 @@ class Chat extends Component {
     this.active = false;
     this.inputHeight = 60;
     this.headerHeight = 60;
+    this.messageField;
 
     this.style = {
       position: 'fixed',
@@ -46,20 +47,20 @@ class Chat extends Component {
       bottomMargin: 5,
       backgroundColor: this.props.baseColor,
     });
-    const messageField = new MessageField(
+    this.messageField = new MessageField(
       this.element,
       this.headerHeight,
       this.inputHeight
     );
     this.children = [
       header,
-      messageField,
+      this.messageField,
       new TextInput(
         this.element,
         this.width,
         this.inputHeight,
         'Send a message',
-        (message) => messageField.onUserMessage(message)
+        (message) => this.messageField.onUserMessage(message)
       ),
     ];
   }
@@ -75,6 +76,7 @@ class Chat extends Component {
     } else {
       this.element.style.display = 'block';
       this.active = true;
+      this.messageField.scrollDown();
     }
   }
 }

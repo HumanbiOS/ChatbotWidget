@@ -21,14 +21,8 @@ class Button extends Component {
       outline: 'none',
       border: 'none',
       marginTop: numberToPixel(12),
+      marginRight: '20px',
     };
-
-    if (right) {
-      this.style.float = 'right';
-      this.style.marginLeft = '20px';
-    } else {
-      this.style.marginRight = '20px';
-    }
 
     this.text = text;
 
