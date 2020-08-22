@@ -11,7 +11,6 @@ class TextArea extends Component {
     this.divStyle = {
       width: 'auto',
       display: 'table-cell',
-      boxSizing: 'none',
     };
     this.style = {
       height: numberToPixel(height - padding * 2),
@@ -34,6 +33,7 @@ class TextArea extends Component {
 
   create() {
     this.div = document.createElement('div');
+    this.div.className = 'chat-bot-input-container';
     this.element = document.createElement('textarea');
     this.element.placeholder = this.placeholder;
     this.element.className = 'chat-bot-scrollbar';

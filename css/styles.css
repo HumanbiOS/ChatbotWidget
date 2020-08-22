@@ -1,3 +1,12 @@
+/* Overrides * {box-sizing: boarderbox} */
+.chat-bot-input-container *,
+.chat-bot-input-container *:before,
+.chat-bot-input-container *:after {
+  -webkit-box-sizing: content-box !important;
+  -moz-box-sizing: content-box !important;
+  box-sizing: content-box !important;
+}
+
 .chat-bot-container {
   position: fixed;
   box-sizing: border-box;
