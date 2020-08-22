@@ -11,6 +11,7 @@ class TextArea extends Component {
     this.divStyle = {
       width: 'auto',
       display: 'table-cell',
+      boxSizing: 'none',
     };
     this.style = {
       height: numberToPixel(height - padding * 2),

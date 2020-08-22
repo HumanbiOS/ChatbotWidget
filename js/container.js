@@ -1,12 +1,12 @@
 import Component from './component';
 import Chat from './chat';
 import Toggle from './toggle';
-import { numberToPixel } from './services/helper';
 
 class Container extends Component {
   constructor(parent, props) {
     super(parent);
     this.props = props;
+    //this.active = false;
 
     super.render();
   }
@@ -27,14 +27,21 @@ class Container extends Component {
         right: this.props.right,
         diameter: this.props.diameterToggle,
         color: this.props.baseColor,
-        callback: () => chat.toggle(),
+        callback: () => {
+          chat.toggle();
+          this.toggle();
+        },
       }),
     ];
   }
 
   create() {
     this.element = document.createElement('div');
-    this.element.className = 'chat-bot-container';
+    //this.element.className = 'chat-bot-container';
+  }
+
+  toggle() {
+    this.element.classList.toggle('chat-bot-container');
   }
 }
 
